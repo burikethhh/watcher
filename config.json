@@ -1,0 +1,17 @@
+{
+  "api_provider": "opencode-zen",
+  "api_key": "sk-wq0xkNufvbuwuaPyOU3140sne002PDGNMK1HcqSMvypj2AqUdjJ5qwteDKxlbP96",
+  "api_url": "https://opencode.ai/zen/v1/chat/completions",
+  "model": "mimo-v2.5-free",
+  "max_tokens": 2048,
+  "temperature": 0.2,
+  "trigger_keys": ["right", "down"],
+  "dismiss_keys": ["left", "up"],
+  "typing_pause_ms": 1200,
+  "context_lines": 30,
+  "suggestion_cooldown_ms": 5000,
+  "min_request_interval": 3.0,
+  "watch_extensions": [".c", ".cpp", ".h", ".ino"],
+  "low_bandwidth": true,
+  "max_context_chars": 2000
+}

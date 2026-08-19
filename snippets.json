@@ -1,0 +1,58 @@
+{
+  "full": {
+    "name": "Full Code",
+    "code": "#include <iostream>\nusing namespace std;\n\nclass BasicSkill{\nprotected:\n    int basicDamage;\n\npublic:\n    BasicSkill(int b = 0){\n        if (b < 0) throw \"basicDamage cannot be negative!\";\n        basicDamage = b;\n    }\n    virtual void displayDamage(){\n        cout << \"Basic Damage: \" << basicDamage << endl;\n    }\n    BasicSkill operator + (int value){\n        return BasicSkill(basicDamage + value);\n    }\n    friend ostream & operator << (ostream& out, BasicSkill& a){\n        cout << \"Basic Damage: \" << a.basicDamage << endl;\n        return out;\n    }\n};\n\nclass SpecialSkill: public BasicSkill{\nprivate:\n    int bonusDamage;\n\npublic:\n    SpecialSkill(int b = 0, int bd = 0): BasicSkill(b){\n        if (bd < 0) throw \"bonusDamage cannot be negative!\";\n        bonusDamage = bd;\n    }\n    void displayDamage(){\n        cout << \"Basic Damage: \" << basicDamage << endl;\n        cout << \"Bonus Damage: \" << bonusDamage << endl;\n    }\n    SpecialSkill operator + (int value){\n        return SpecialSkill(basicDamage + value, bonusDamage + value);\n    }\n    friend ostream & operator << (ostream& out, SpecialSkill& A){\n        cout << \"Basic Damage: \" << A.basicDamage << endl;\n        cout << \"Bonus Damage: \" << A.bonusDamage;\n        return out;\n    }\n};\n\nint main(){\n    try{\n        BasicSkill bs1, bs2(100);\n        SpecialSkill ss1;\n        SpecialSkill ss2(100, 50);\n\n        cout << \"BasicSkill 1 Details\\n\";\n        bs1.displayDamage();\n        cout << \"--------------------\\n\";\n        cout << \"\\n BasicSkill 2 Details\\n\";\n        bs2.displayDamage();\n        cout << \"--------------------\\n\";\n        cout << \"\\nSpecialSkill 1 Details\\n\";\n        ss1.displayDamage();\n        cout << \"--------------------\\n\";\n        cout << \"\\nSpecialSkill 2 Details\\n\";\n        ss2.displayDamage();\n        cout << \"--------------------\\n\";\n\n        int upgrade;\n        cout << \"\\n Upgrade: \";\n        cin >> upgrade;\n\n        if(cin.fail())\n            throw \"\\n Invalid Input\";\n        if(upgrade < 0)\n            throw \"\\n Invalid Input\";\n\n        bs1 = bs1 + upgrade;\n        bs2 = bs2 + upgrade;\n        ss1 = ss1 + upgrade;\n        ss2 = ss2 + upgrade;\n\n        cout << \"BasicSkill 1 Details\\n\" << bs1 << endl;\n        cout << \"--------------------\\n\";\n        cout << \"\\n BasicSkill 2 Details\\n\" << bs2 << endl;\n        cout << \"--------------------\\n\";\n        cout << \"\\nSpecialSkill 1 Details\\n\" << ss1 << endl;\n        cout << \"--------------------\\n\";\n        cout << \"\\nSpecialSkill 2 Details\\n\" << ss2 << endl;\n        cout << \"--------------------\\n\";\n    }\n    catch(const char* msg){\n        cout << \"\\n Error\" << msg << endl;\n    }\n    return 0;\n}"
+  },
+  "cls": {
+    "name": "Class Header",
+    "code": "class ClassName{\nprotected:\n    int memberVar;\n\npublic:"
+  },
+  "ctor": {
+    "name": "Constructor",
+    "code": "    ClassName(int m = 0){\n        if (m < 0) throw \"memberVar cannot be negative!\";\n        memberVar = m;\n    }"
+  },
+  "virt": {
+    "name": "Virtual Display",
+    "code": "    virtual void display(){\n        cout << \"Value: \" << memberVar << endl;\n    }"
+  },
+  "ope": {
+    "name": "Operator+",
+    "code": "    ClassName operator + (int value){\n        return ClassName(memberVar + value);\n    }"
+  },
+  "stream": {
+    "name": "Operator<<",
+    "code": "    friend ostream & operator << (ostream& out, ClassName& obj){\n        cout << \"Value: \" << obj.memberVar << endl;\n        return out;\n    }"
+  },
+  "}": {
+    "name": "Close Class",
+    "code": "};"
+  },
+  "sub": {
+    "name": "Subclass",
+    "code": "class DerivedClass: public ClassName{\nprivate:\n    int bonus;\n\npublic:"
+  },
+  "subctor": {
+    "name": "Sub Constructor",
+    "code": "    DerivedClass(int m = 0, int b = 0): ClassName(m){\n        if (b < 0) throw \"bonus cannot be negative!\";\n        bonus = b;\n    }"
+  },
+  "ovr": {
+    "name": "Override Display",
+    "code": "    void display(){\n        cout << \"Value: \" << memberVar << endl;\n        cout << \"Bonus: \" << bonus << endl;\n    }"
+  },
+  "subope": {
+    "name": "Sub Operator+",
+    "code": "    DerivedClass operator + (int value){\n        return DerivedClass(memberVar + value, bonus + value);\n    }"
+  },
+  "substream": {
+    "name": "Sub Operator<<",
+    "code": "    friend ostream & operator << (ostream& out, DerivedClass& obj){\n        cout << \"Value: \" << obj.memberVar << endl;\n        cout << \"Bonus: \" << obj.bonus;\n        return out;\n    }"
+  },
+  "try": {
+    "name": "Try-Catch",
+    "code": "try{\n    ClassName obj1, obj2(100);\n\n    cout << \"=== Testing ===\" << endl;\n    obj1.display();\n    cout << \"--------------------\\n\";\n    obj2.display();\n    cout << \"--------------------\\n\";\n\n    int value;\n    cout << \"\\n Enter value: \";\n    cin >> value;\n\n    if(cin.fail())\n        throw \"\\n Invalid Input\";\n    if(value < 0)\n        throw \"\\n Invalid Input\";\n\n    obj1 = obj1 + value;\n    obj2 = obj2 + value;\n\n    cout << \"After Upgrade\" << endl;\n    cout << obj1 << endl;\n    cout << \"--------------------\\n\";\n    cout << obj2 << endl;\n    cout << \"--------------------\\n\";\n}\ncatch(const char* msg){\n    cout << \"\\n Error\" << msg << endl;\n}"
+  },
+  "main": {
+    "name": "Main Function",
+    "code": "int main(){\n    try{\n        ClassName obj1, obj2(100);\n\n        cout << \"=== Testing ===\" << endl;\n        obj1.display();\n        cout << \"--------------------\\n\";\n        obj2.display();\n        cout << \"--------------------\\n\";\n\n        int value;\n        cout << \"\\n Enter value: \";\n        cin >> value;\n\n        if(cin.fail())\n            throw \"\\n Invalid Input\";\n        if(value < 0)\n            throw \"\\n Invalid Input\";\n\n        obj1 = obj1 + value;\n        obj2 = obj2 + value;\n\n        cout << \"After Upgrade\" << endl;\n        cout << obj1 << endl;\n        cout << \"--------------------\\n\";\n        cout << obj2 << endl;\n        cout << \"--------------------\\n\";\n    }\n    catch(const char* msg){\n        cout << \"\\n Error\" << msg << endl;\n    }\n    return 0;\n}"
+  }
+}
